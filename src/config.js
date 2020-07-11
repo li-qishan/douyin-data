@@ -1,0 +1,348 @@
+const config = {
+	// 数据源的编码方式。
+	// 默认为UTF-8。884X629
+	// 如果自己创建csv文件且是国内用户，保存的编码很可能是GBK的，如果出现乱码则将这里改成GBK。
+	// 不建议修改这里。而是建议将自己制作完毕的csv文件的内容复制到example.csv中。因为example.csv的编码格式是所有语言都支持的。
+	// Encoding is not recommended to modify.
+	// Instead, it is recommended to copy the contents of the CSV file produced by yourself to example.csv.
+	// The encoding format of example.csv is supported by all languages.
+	encoding: "GBK",
+
+	// 每个时间节点最多显示的条目数。
+	max_number: 23,
+
+	// 控制是否显示顶部附加信息文字。
+	showMessage: true,
+
+	// 时间自动排序。
+	// !!!请确保打开此项时，使用的是标准日期格式！(即：YYYY-MM-DD HH:MM)
+	// 如果关闭，排序顺序为csv表格的时间字段自上而下的出现顺序。
+	// 如果你的日期格式为标准的日期格式，则可以无视数据排序，达到自动按照日期顺序排序的效果。
+	// 开启auto_sort可以实现时间的自动补间。
+	auto_sort: false,
+
+	// 时间格式化
+	timeFormat: "%Y-%m-%d",
+
+	// 倒序，使得最短的条位于最上方
+	reverse: false,
+
+	// 类型根据什么字段区分？如果是name，则关闭类型显示
+	divide_by: "name",
+
+	// 颜色根据什么字段区分？
+	divide_color_by: "name",
+
+	// 字段的值与其对应的颜色值
+	color: {
+		'北京': "#17C",
+		'法国': "#72F3FE",
+		'俄罗斯联邦': "#17C",
+		'深圳': "#9955AA",
+		'德国': "#9955AA",
+		'北京': "#17C",
+		'天津': "#72F3FE",
+		'石家庄': "#11EEEE",
+		'MAC': "#9955AA",
+		'雅诗兰黛': "#17C",
+		'印度': "#8605d1",
+		'阿联酋': "#11EEEE",
+		'孟加拉国': "#00a5bb",
+		'阿根廷': "#c0620b",
+		
+		'黑龙江省': "#933dda",
+		'陕西省': "#006666",
+		'河北省': "#f39303",
+		'辽宁省': "#009688",
+		'天津市': "#009688",
+		'辽宁省': "#009688",
+		'山东省': "#e91e63",
+		'河南省': "#3F51B5",
+		'江苏省': "#4caf50",
+		'广西省': "#006396f5",
+		'河北省': "#009688",
+
+		'蔡徐坤': "#009688",
+		'杨幂': "#F44336",
+		'高云翔': "#673AB7",
+		'杨紫': "#9C27B0",
+		'杨紫': "#2196F3",
+		
+		'天蝎座': "#3F51B5",
+		'摩羯座': "#FF9800",
+		'狮子座': "#E91E63",
+		'双子座': "#673AB7",
+		'水瓶座': "#087b71",
+		
+			},
+
+	// 颜色绑定增长率
+	changeable_color: false,
+
+	// 颜色渐变
+	color_range: ["#f1c232", "#4c1130"],
+
+	// 附加信息内容。
+	// left label
+	itemLabel: "我国各省市草莓产量排行(单位：吨)",
+
+	// right label
+	typeLabel: "来源：国家统计局",
+	// 榜首项目信息的水平位置 。
+	item_x: 350,
+
+	// 时间点间隔时间。
+	interval_time: 1.2,
+
+	// 上方文字水平高度。
+	text_y: -50,
+
+	// 右侧文字横坐标
+	text_x: 1000,
+	// 偏移量
+	offset: 350,
+
+	// 长度小于display_barInfo的bar将不显示barInfo。
+	display_barInfo: 10,
+
+	// 使用计数器
+	// 注意！使用计时器和使用类型目前不能兼容，即不能同时开启！
+	// 计数器会出现在右上角，记录着当前榜首的持续时间。
+	use_counter: false,
+
+	// 每个时间节点对于计数器的步长。
+	// 比如时间节点日期的间隔可能为1周（七天），那么step的值就应该为7。
+	step: 1,
+
+	// 格式化数值
+	// 这里控制着数值的显示位数。主要靠修改中间的数字完成，如果为1则为保留一位小数。
+	// .2f mains keep two decimals.
+	format: ".0f",
+
+	// 自定义数值的后缀
+	postfix: "吨",
+
+	// 图表左右上下间距。
+	// 注意，left_margin不包括左侧的label，修改数值较小会导致左侧label不显示
+	//left_margin: 250,
+	left_margin: 350,
+	right_margin: 250,
+	//right_margin: 100,
+	top_margin: 350,
+	bottom_margin: 50,
+
+	// 是否开启时间标签。
+	dateLabel_switch: true,
+	// 时间标签坐标。建议x：1000 y：-50开始尝试，默认位置为x:null,y:null
+	//2020 02-27 改  移动端 适配  X小  Y大
+	dateLabel_x: 1050,
+	//适应底部margin 500- 1950
+	//dateLabel_y: 1950,
+	dateLabel_y: 2250,
+
+	
+	//<svg width="1460" height="2560">
+	//2020 02-27 改  移动端 适配  X小  Y大
+	// dateLabel_x: 1080,
+	// dateLabel_y: 2150,
+
+
+
+
+	// 允许大于平均值的条消失时上浮。
+	allow_up: false,
+
+	// 设置动画效果，如果为true，则新进入的条目从0开始。
+	enter_from_0: true,
+
+	// 如果所有数字都很大，导致拉不开差距则开启此项使得坐标原点变换为（最小值）*2-（最大值）
+	big_value: false,
+
+	// 如果要使用半对数坐标，则开启此项
+	use_semilogarithmic_coordinate: true,
+
+	// barinfo太长？也许可以试试这个
+	long: false,
+
+	// 延迟多少个时间节点开始  节点若为 小数点不好使
+	wait: 2,
+
+	// 单独控制交换动画速度倍率
+	update_rate: 0.4,
+
+	// 开启匀速动画效果 ease-out
+	animation: 'ease-in-out',
+	showLabel: true,
+
+	// label x轴位置
+	//左侧文字
+	labelx: -70,
+
+	use_img: true,
+
+	// 图片路径，本地图片或者网上图片。
+	imgs: {
+		//'北京': 'http://i1.hdslb.com/bfs/face/983034448f81f45f05956d0455a86fe0639d6a36.jpg',
+		//		'王者荣耀': './img/wzry.jpg',
+		//		'和平精英': './img/cjzc.png',
+		//		'欢乐斗地主': './img/kxddz.jpg',
+		//		'开心消消乐': './img/kxxxl.jpg',
+		//		'迷你世界': './img/mnsj.png',
+		//		'天天象棋': './img/ttxq.jpg',
+		//		'JJ斗地主': './img/jjddz.jpg',
+		//		'腾讯欢乐麻将': './img/hlmj.jpg',
+		//		'全军出击': './img/绝地求生全军出击.jpg',
+		//		'消灭星星': './img/PopStar!消灭星星官方正版.jpg',
+		//		'别踩白块儿2': './img/钢琴块2-别踩白块儿2.jpg',
+		//		'贪吃蛇大作战': './img/贪吃蛇大作战.jpg',
+		//		'4399游戏盒': './img/4399yxh.jpg',
+		//		'宾果消消消': './img/宾果消消消.jpg',
+		//		'网易我的世界': './img/网易我的世界.jpg',
+		//		'九游游戏': './img/9ygame.jpg',
+
+		//		'MAC': './img/meizhuang/MAC.jpg',
+		//		'香奈儿': './img/meizhuang/香奈儿.jpg',
+		//		'雅诗兰黛': './img/meizhuang/雅诗兰黛.jpg',
+		//		'阿玛尼': './img/meizhuang/阿玛尼.jpg',
+		//		'纪梵希': './img/meizhuang/纪梵希.jpg',
+		//		'YSL': './img/meizhuang/圣罗兰.jpg',
+		//		'欧莱雅': './img/meizhuang/欧莱雅.jpg',
+		//		'TF': './img/meizhuang/TF.jpg',
+		//		'完美日记': './img/meizhuang/完美日记.jpg',
+		//		'卡姿兰': './img/meizhuang/卡姿兰.jpg',
+		//		'KIKO': './img/meizhuang/KIKO.jpg',
+		//		'花西子': './img/meizhuang/花西子.jpg',
+		//		'露华浓': './img/meizhuang/露华浓.jpg',
+
+		'中国': './img/guoqi/中国.gif',
+		'美国': './img/guoqi/美国.gif',
+		'加拿大': './img/guoqi/加拿大.gif',
+		'日本': './img/guoqi/日本.gif',
+		'德国': './img/guoqi/德国.gif',
+		'智利': './img/guoqi/智利.gif',
+		'阿联酋': './img/guoqi/阿联酋.gif',
+		'韩国': './img/guoqi/韩国.gif',
+		'英国': './img/guoqi/英国.gif',
+		'意大利': './img/guoqi/意大利.gif',
+		'印度': './img/guoqi/印度.gif',
+		'葡萄牙': './img/guoqi/葡萄牙.gif',
+		'波兰': './img/guoqi/波兰.gif',
+		'白俄罗斯': './img/guoqi/白俄罗斯.gif',
+		'阿根廷': './img/guoqi/阿甘挺.gif',
+		'印度尼西亚': './img/guoqi/印度尼西亚.gif',
+		'乌克兰': './img/guoqi/乌克兰.gif',
+		'俄罗斯联邦': './img/guoqi/俄罗斯.gif',
+		'孟加拉国': './img/guoqi/孟加拉国.gif',
+		'澳大利亚': './img/guoqi/澳大利亚.gif',
+		'巴西': './img/guoqi/巴西.gif',
+		'法国': './img/guoqi/法国.gif',
+
+		'巴基斯坦': './img/guoqi/巴基斯坦.gif',
+		'越南': './img/guoqi/越南.gif',
+		'西班牙': './img/guoqi/西班牙.gif',
+		'泰国': './img/guoqi/泰国.gif',
+		
+		'荷兰': './img/guoqi/荷兰.gif',
+		'墨西哥': './img/guoqi/墨西哥.gif',
+		'沙特阿拉伯': './img/guoqi/沙特阿拉伯.gif',
+		'瑞士': './img/guoqi/瑞士.gif',
+		'土耳其': './img/guoqi/土耳其.gif',
+		'新加坡': './img/guoqi/新加坡.gif',
+		'挪威': './img/guoqi/挪威.gif',
+		'瑞典': './img/guoqi/瑞典.gif',
+		
+		
+		'杨紫': './img/start/杨紫.jpg',
+		'周杰伦': './img/start/周杰伦.jpg',
+		'贾乃亮': './img/start/贾乃亮.jpg',
+		'高以翔': './img/start/高以翔.jpg',
+		'蔡徐坤': './img/start/蔡徐坤.jpg',
+		'杨幂': './img/start/杨幂.jpg',
+		'王一博': './img/start/王一博.jpg',
+		'高云翔': './img/start/高云翔.jpg',
+		'肖战': './img/start/肖战.jpg',
+		'易烊千玺': './img/start/易烊千玺.jpg',
+		'朱一龙': './img/start/朱一龙.jpg',
+		'李小璐': './img/start/李小璐.jpg',
+		'赖冠霖': './img/start/赖冠霖.jpg',
+		
+		'白羊座': './img/星座/xz_icon130_01.jpg',
+		'金牛座': './img/星座/xz_icon130_02.gif',
+		'双子座': './img/星座/xz_icon130_03.gif',
+		'巨蟹座': './img/星座/xz_icon130_04.gif',
+		'狮子座': './img/星座/xz_icon130_05.gif',
+		'处女座': './img/星座/xz_icon130_06.gif',
+		'天秤座': './img/星座/xz_icon130_07.gif',
+		'天蝎座': './img/星座/xz_icon130_08.gif',
+		'射手座': './img/星座/xz_icon130_09.gif',
+		'摩羯座': './img/星座/xz_icon130_10.gif',
+		'水瓶座': './img/星座/xz_icon130_11.gif',
+		'双鱼座': './img/星座/xz_icon130_12.jpg',
+		
+		'沧元图': './img/小说/沧元图.jpg',
+		'凡人修仙传仙界': './img/小说/凡人修仙传仙界.jpg',
+		'剑来': './img/小说/剑来.jpg',
+		'终极斗罗': './img/小说/终极斗罗.jpg',
+		'元尊': './img/小说/元尊.jpg',
+		'万古神帝': './img/小说/万古神帝.jpg',
+		'三寸人间': './img/小说/三寸人间.jpg',
+		'武炼巅峰': './img/小说/武炼巅峰.jpg',
+		'明朝败家子': './img/小说/明朝败家子.jpg',
+		'圣墟': './img/小说/圣墟.jpg',
+		'修真聊天群': './img/小说/修真聊天群.jpg',
+		'逆天邪神': './img/小说/逆天邪神.jpg',
+	
+	
+		//省市部分
+		'河北省': './img/省份/省市01_14.gif',
+		'江苏省': './img/省份/省市02_04.jpg',
+		'山东省': './img/省份/省市02_16.jpg',
+		'辽宁省': './img/省份/省市02_08.jpg',
+		'山西省': './img/省份/省市02_20.jpg',
+		'天津市': './img/省份/省份03_13.jpg',
+		'广东省': './img/省份/省市01_07.gif',
+		'河南省': './img/省份/省市01_17.gif',
+		'湖北省': './img/省份/省市01_19.gif',
+		'安徽省': './img/省份/省市01_03.gif',
+		'浙江省': './img/省份/省市02_23.jpg',
+		'福建省': './img/省份/省市01_04.gif',
+		'四川省': './img/省份/省市02_22.jpg',
+		'广西壮族自治区': './img/省份/省市01_10.gif',
+		'江西省': './img/省份/省市02_06.jpg',
+		'湖南省': './img/省份/省市01_20.jpg',
+		'内蒙古自治区': './img/省份/省市02_13.jpg',
+		'上海市': './img/省份/省份03_11.jpg',
+		'云南省': './img/省份/省份03_03.jpg',
+		'陕西省': './img/省份/省市02_21.jpg',
+		'新疆维吾尔自治区': './img/省份/省份03_04.jpg',
+		'吉林省': './img/省份/省市02_03.jpg',
+		'重庆市': './img/省份/省份03_14.jpg',
+		'甘肃省': './img/省份/省市01_05.gif',
+		'黑龙江省': './img/省份/省市01_18.gif',
+		'贵州省': './img/省份/省市01_11.gif',
+		'宁夏回族自治区': './img/省份/省市02_14.jpg',
+		'北京市': './img/省份/省份03_12.jpg',
+		'青海省': './img/省份/省市02_15.jpg',
+		'海南省': './img/省份/省市01_12.gif',
+		'西藏自治区': './img/省份/省份03_06.jpg',
+
+
+
+	},
+
+	// 全局背景颜色
+	background_color: "#FFFF",
+	
+	// 全局背景图片
+	background_img:"./img/背景/快递.jpg",
+
+	// 矩形柱是否为圆角矩形
+	rounded_rectangle: false,
+
+	// 是否显示x轴轴线
+	show_x_tick: true,
+
+	// 限制bar info 展示的长度
+	// limit bar info display length
+	bar_name_max: 30
+};
